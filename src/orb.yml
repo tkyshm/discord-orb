@@ -45,6 +45,7 @@ commands:
             else
               curl -H "Content-Type: application/json" -X POST -d "{\"username\": \"CircleCI\",\"content\": \"<< parameters.failure_message >>\"}" "<< parameters.webhook_url >>";
             fi
+          when: always
 
 example:
   success_notify:
