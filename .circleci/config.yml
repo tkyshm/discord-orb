@@ -1,0 +1,22 @@
+version: 2.1
+ubuntu_image: &ubuntu_image
+  ubuntu:18.04
+install-sudo: &install-sudo |
+  apt-get update
+  apt-get install -y sudo
+
+orbs:
+  discord-orb: tkyshm/discord-orb@0.0.1
+
+jobs:
+  success:
+    steps:
+      - run:
+          command: *install-sudo
+      - discord-orb/notify
+
+  fail:
+    steps:
+      - run: 
+          command: exit 1
+      - discord-orb/notify
