@@ -13,15 +13,13 @@ commands:
         type: string
         default: CircleCI
       success_message:
-        default: |
-          :green_circle: [${CIRCLE_BRANCH}] ${CIRCLE_JOB} job has succeeded! - ${CIRCLE_BUILD_URL}
+        default: ":green_circle: [${CIRCLE_BRANCH}] ${CIRCLE_JOB} job has succeeded! - ${CIRCLE_BUILD_URL}"
         type: string
         description: success message
       failure_message:
         description: failure message
         type: string
-        default: |
-          :red_circle: [${CIRCLE_BRANCH}] ${CIRCLE_JOB} job has failed! - ${CIRCLE_BUILD_URL}
+        default: ":red_circle: [${CIRCLE_BRANCH}] ${CIRCLE_JOB} job has failed! - ${CIRCLE_BUILD_URL}"
     steps:
       - run:
           command: |
@@ -43,9 +41,9 @@ commands:
             fi
 
             if [ "$DISCORD_BUILD_STATUS" = "success" ]; then
-              curl -H 'Content-type: application/json' -X POST -d "{\"embeds\": [{ \"color\": 1363733, \"title\": \"Circle CI\", \"description\": \"<< parameters.success_message >>\"}]}" "<< parameters.webhook_url >>";
+              curl -H 'Content-type: application/json' -XPOST -d "{\"embeds\": [{ \"color\": 1363733, \"title\": \"Circle CI\", \"description\": \"<< parameters.success_message >>\"}]}" "<< parameters.webhook_url >>";
             else
-              curl -H 'Content-type: application/json' -X POST -d "{\"embeds\": [{ \"color\": 16081506, \"title\": \"Circle CI\", \"description\": \"<< parameters.failure_message >>\"}]}" "<< parameters.webhook_url >>";
+              curl -H 'Content-type: application/json' -XPOST -d "{\"embeds\": [{ \"color\": 16081506, \"title\": \"Circle CI\", \"description\": \"<< parameters.failure_message >>\"}]}" "<< parameters.webhook_url >>";
             fi
           when: always
 
@@ -55,7 +53,7 @@ example:
     usage:
       version: 2.1
       orbs:
-        discord-orb: tkyshm/discord-orb@0.0.7
+        discord-orb: tkyshm/discord-orb@0.0.8
       jobs:
         build:
           machine: true
