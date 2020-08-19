@@ -5,6 +5,15 @@ commands:
   notify:
     description: notify
     parameters:
+      build_url:
+        type: string
+        default: ${CIRCLE_BUILD_URL}
+      job_name:
+        type: string
+        default: ${CIRCLE_JOB}
+      branch_name:
+        type: string
+        default: ${CIRCLE_BRANCH}
       webhook_url:
         description: "discord channel webhook url"
         type: string
@@ -14,14 +23,14 @@ commands:
         default: CircleCI
       success_message:
         default: |
-          :green_circle: ${CIRCLE_BRANCH} ${CIRCLE_JOB} job has succeeded! - ${CIRCLE_BUILD_URL}
+          :green_circle: [<< parameters.branch_name >>] << parameters.job_name >> job has succeeded! - << parameters.build_url >>
         type: string
         description: success message
       failure_message:
         description: failure message
         type: string
         default: |
-          :red_circle: ${CIRCLE_BRANCH} ${CIRCLE_JOB} job has failed! - ${CIRCLE_BUILD_URL}
+          :red_circle: [<< parameters.branch_name >>] << parameters.job_name >> job has failed! - << parameters.build_url >>
     steps:
       - run:
           command: |
@@ -55,7 +64,7 @@ example:
     usage:
       version: 2.1
       orbs:
-        discord-orb: tkyshm/discord-orb@0.0.4
+        discord-orb: tkyshm/discord-orb@0.0.5
       jobs:
         build:
           machine: true

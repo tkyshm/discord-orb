@@ -12,7 +12,7 @@ executors:
       - image: *ubuntu_image
 
 orbs:
-  discord-orb: tkyshm/discord-orb@0.0.4
+  discord-orb: tkyshm/discord-orb@0.0.5
 
 jobs:
   success:
