@@ -13,13 +13,15 @@ commands:
         type: string
         default: CircleCI
       success_message:
-        default: ":green_circle: ${CIRCLE_BRANCH} ${CIRCLE_JOB} job has succeeded! - ${CIRCLE_BUILD_URL}"
+        default: |
+          :green_circle: ${CIRCLE_BRANCH} ${CIRCLE_JOB} job has succeeded! - ${CIRCLE_BUILD_URL}
         type: string
         description: success message
       failure_message:
         description: failure message
         type: string
-        default: ":red_circle: ${CIRCLE_BRANCH} ${CIRCLE_JOB} job has failed! - ${CIRCLE_BUILD_URL}"
+        default: |
+          :red_circle: ${CIRCLE_BRANCH} ${CIRCLE_JOB} job has failed! - ${CIRCLE_BUILD_URL}
     steps:
       - run:
           command: |
@@ -53,7 +55,7 @@ example:
     usage:
       version: 2.1
       orbs:
-        discord-orb: tkyshm/discord-orb@0.0.3
+        discord-orb: tkyshm/discord-orb@0.0.4
       jobs:
         build:
           machine: true
