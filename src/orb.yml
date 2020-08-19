@@ -55,7 +55,7 @@ example:
     usage:
       version: 2.1
       orbs:
-        discord-orb: tkyshm/discord-orb@0.0.5
+        discord-orb: tkyshm/discord-orb@0.0.6
       jobs:
         build:
           machine: true
