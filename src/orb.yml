@@ -43,9 +43,9 @@ commands:
             fi
 
             if [ "$DISCORD_BUILD_STATUS" = "success" ]; then
-              curl -H 'Content-type: application/json' -d "{\"embeds\": [{ \"color\": 1363733, \"title\": \"Circle CI\", \"description\": \"<< parameters.success_message >>\"}]}" "<< parameters.webhook_url >>";
+              curl -H 'Content-type: application/json' -X POST -d "{\"embeds\": [{ \"color\": 1363733, \"title\": \"Circle CI\", \"description\": \"<< parameters.success_message >>\"}]}" "<< parameters.webhook_url >>";
             else
-              curl -H 'Content-type: application/json' -d "\{"embeds\": [{ \"color\": 16081506, \"title\": \"Circle CI\", \"description\": \"<< parameters.failure_message >>\"}]}" "<< parameters.webhook_url >>";
+              curl -H 'Content-type: application/json' -X POST -d "{\"embeds\": [{ \"color\": 16081506, \"title\": \"Circle CI\", \"description\": \"<< parameters.failure_message >>\"}]}" "<< parameters.webhook_url >>";
             fi
           when: always
 
@@ -55,7 +55,7 @@ example:
     usage:
       version: 2.1
       orbs:
-        discord-orb: tkyshm/discord-orb@0.0.6
+        discord-orb: tkyshm/discord-orb@0.0.7
       jobs:
         build:
           machine: true
