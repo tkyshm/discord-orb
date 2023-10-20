@@ -34,7 +34,7 @@ commands:
       - run: 
           name: "Notify to Discord"
           command: |
-            if [ -z "<< parameters.webhook_url >>"] ; then
+            if [ -z "<< parameters.webhook_url >>" ] ; then
               echo "No discrod webhook url set"
               echo "Please input your DISCORD_WEBHOOK_URL value"
               exit 1
